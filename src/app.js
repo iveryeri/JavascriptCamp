@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-console.log("Hello Kodlama.io")
-
-//
-=======
 console.log("Merhaba Kodlama.io")
 
 //JS type safe değildir
@@ -24,11 +19,11 @@ console.log(euroDun)
 //array
 //camelCasing
 //PascalCasing
-let konutKredileri = ["Konut kredisi","Emlak Konut Kredisi","Kamu Konut Kredisi","Özel Konut Kredisi"]
+let konutKredileri = ["Konut kredisi", "Emlak Konut Kredisi", "Kamu Konut Kredisi", "Özel Konut Kredisi"]
 
 console.log("<ul>")
-for(let i = 0;i<konutKredileri.length;i++){
-    console.log("<li>"+konutKredileri[i]+"</li>")
+for (let i = 0; i < konutKredileri.length; i++) {
+    console.log("<li>" + konutKredileri[i] + "</li>")
 }
 console.log("</ul>")
 
@@ -39,4 +34,3 @@ console.log("</ul>")
 </ul> */}
 
 console.log(konutKredileri)
->>>>>>> 913ee0044458ba0401b6785ff179f907b3fb0c1e

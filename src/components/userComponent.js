@@ -1,12 +1,13 @@
 import { BaseLogger, ElasticLogger, MongoLogger } from "../crossCuttingConcerns/logging/logger.js"
+import Customer from "../models/customer.js";
 import User from "../models/user.js"
-import UserService from "../services/userService.js"
+import UserService from "../services/userService_OLD.js"
 
 console.log("User component installed")
 
 let logger1 = new BaseLogger()
 let userService = new UserService(logger1)
-
+/*
 let user1 = new User(1, "Ilgar", "Veryeri", "Istanbul")
 let user2 = new User(2, "Umut", "Tuzer", "Istanbul")
 
@@ -19,7 +20,7 @@ console.log(userService.getById(2))
 
 //userService.getById(1)
 //userService.list()
-
+*/
 
 
 /*
@@ -32,3 +33,23 @@ console.log(customer.lastName)
 console.log(customer)
 */
 
+
+console.log("_______________________");
+userService.load();
+
+
+let customerToAdd = new Customer(1, "Seda", "Yilmaz", "Ankara", "wrongType")
+customerToAdd.type = "customer"
+userService.add(customerToAdd)
+
+console.log("Customers:");
+console.log(userService.customers)
+console.log("Employees:");
+console.log(userService.employees)
+console.log("Errors:");
+console.log(userService.errors)
+
+
+
+
+console.log(userService.getCustomersSorted())

@@ -1,5 +1,5 @@
 import { users } from "../data/users.js"
-import { ErrorsList } from "../models/errorsList.js"
+import { ErrorsList } from "./errorsList.js"
 import DataError from "../models/dataError.js"
 import ValidationService from "./validationService.js"
 
@@ -41,8 +41,8 @@ export default class UserService {
     checkCustomerValidity(user) {
         let hasErrors = false;
         let requiredString = "id firstName lastName city age";
-        let missingField = this.validation.checkFieldValidityError(user, requiredString);
-        if (missingField) {
+        let missingField = this.validation.checkFieldValidity(user, requiredString);
+        if (!missingField) {
             hasErrors = true
             let errorText = ErrorsList("MissingField", missingField)
             this.errors.push(new DataError(errorText, user))

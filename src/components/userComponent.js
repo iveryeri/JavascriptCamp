@@ -1,6 +1,5 @@
 import { BaseLogger, ElasticLogger, MongoLogger } from "../crossCuttingConcerns/logging/logger.js"
 import Customer from "../models/customer.js";
-import User from "../models/user.js"
 import CustomerService from "../services/customerService.js";
 import EmployeeService from "../services/employeeService.js";
 import errorService from "../services/errorService.js";

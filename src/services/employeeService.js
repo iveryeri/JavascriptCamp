@@ -52,7 +52,11 @@ export default class EmployeeService {
     }
 
     getEmployeeById(id) {
-        return this.employees.find(u => u.id === id)
+        if (this.employees.find(u => u.id === id)) {
+            return this.employees.find(u => u.id === id)
+        } else {
+            return (`${ErrorsList("NoUser")} (id:${id})`)
+        }
     }
 
     getEmployeesSorted() {

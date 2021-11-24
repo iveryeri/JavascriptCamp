@@ -52,7 +52,11 @@ export default class CustomerService {
     }
 
     getCustomerById(id) {
-        return this.customers.find(u => u.id === id)
+        if (this.customers.find(u => u.id === id)) {
+            return this.customers.find(u => u.id === id)
+        } else {
+            return (`${ErrorsList("NoUser")} (id:${id})`)
+        }
     }
 
     getCustomersSorted() {

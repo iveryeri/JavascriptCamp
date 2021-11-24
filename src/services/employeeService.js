@@ -1,13 +1,12 @@
 import { users } from "../data/users.js"
-import { ErrorsList } from "../models/errorsList.js"
+import { ErrorsList } from "./errorsList.js"
 import DataError from "../models/dataError.js"
+import errorService from "../services/errorService.js";
 import ValidationService from "./validationService.js"
 
-//Service: Method pool
-export default class UserService {
+export default class EmployeeService {
     constructor(loggerService) {
         this.employees = []
-        this.errors = []
         this.loggerService = loggerService
         this.validation = new ValidationService
     }
@@ -27,19 +26,10 @@ export default class UserService {
     checkEmployeeValidity(user) {
         let hasErrors = false;
         let requiredString = "id firstName lastName city age salary";
-        let missingField = this.validation.checkFieldValidityError(user, requiredString);
-        if (missingField) {
+        if (!this.validation.checkFieldValidity(user, requiredString) || !this.validation.checkIfNumberField(user, user.age)) {
             hasErrors = true
-            let errorText = ErrorsList("MissingField", missingField)
-            this.errors.push(new DataError(errorText, user))
         }
-
-        if (!this.validation.checkIfNumber(user.age)) {
-            hasErrors = true;
-            let errorText = ErrorsList("AgeNaN", user.age)
-            this.errors.push(new DataError(errorText, user))
-        }
-        return hasErrors;
+        return !hasErrors
     }
 
     add(user) {
@@ -50,8 +40,8 @@ export default class UserService {
                 }
                 break;
             default:
-                let errorText = ErrorsList("AddWrongUserType")
-                this.errors.push(new DataError(errorText, user));
+                let errorText = ErrorsList("AddingWrongUserType")
+                errorService.addError(new DataError(errorText, user))
                 break;
         }
         this.loggerService.log(user)
@@ -61,11 +51,11 @@ export default class UserService {
         return this.employees
     }
 
-    getCustomerById(id) {
+    getEmployeeById(id) {
         return this.employees.find(u => u.id === id)
     }
 
-    getEmployeeSorted() {
+    getEmployeesSorted() {
         return this.employees.sort((employee1, employee2) => this.validation.sortFunction(employee1, employee2))
     }
 }

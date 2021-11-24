@@ -1,4 +1,5 @@
 import { users } from "../data/users.js"
+import DataError from "../models/dataError.js";
 import { ErrorsList } from "./errorsList.js";
 
 class ErrorService {

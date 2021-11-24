@@ -15,7 +15,7 @@ export default class EmployeeService {
         for (const user of users) {
             switch (user.type) {
                 case "employee":
-                    if (!this.checkEmployeeValidity(user)) {
+                    if (this.checkEmployeeValidity(user)) {
                         this.employees.push(user);
                     }
                     break;
@@ -35,12 +35,12 @@ export default class EmployeeService {
     add(user) {
         switch (user.type) {
             case "employee":
-                if (!this.checkEmployeeValidity(user)) {
+                if (this.checkEmployeeValidity(user)) {
                     this.employees.push(user)
                 }
                 break;
             default:
-                let errorText = ErrorsList("AddingWrongUserType")
+                let errorText = ErrorsList("InvalidUserType")
                 errorService.addError(new DataError(errorText, user))
                 break;
         }

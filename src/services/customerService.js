@@ -15,7 +15,7 @@ export default class CustomerService {
         for (const user of users) {
             switch (user.type) {
                 case "customer":
-                    if (!this.checkCustomerValidity(user)) {
+                    if (this.checkCustomerValidity(user)) {
                         this.customers.push(user);
                     }
                     break;
@@ -35,12 +35,12 @@ export default class CustomerService {
     add(user) {
         switch (user.type) {
             case "customer":
-                if (!this.checkCustomerValidity(user)) {
+                if (this.checkCustomerValidity(user)) {
                     this.customers.push(user)
                 }
                 break;
             default:
-                let errorText = ErrorsList("AddingWrongUserType")
+                let errorText = ErrorsList("InvalidUserType")
                 errorService.addError(new DataError(errorText, user))
                 break;
         }

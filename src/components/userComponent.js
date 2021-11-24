@@ -5,48 +5,32 @@ import CustomerService from "../services/customerService.js";
 import EmployeeService from "../services/employeeService.js";
 import errorService from "../services/errorService.js";
 
-
-import UserService from "../services/userService_OLD.js"
-
-console.log("User component installed")
-
 let logger1 = new BaseLogger()
 let customerService = new CustomerService(logger1)
 let employeeService = new EmployeeService(logger1)
 
-
-
-
-/*
-let customer = { id: 1, firstName: "Ilgar" }
-
-//Prototyping (adding a new property to an existing prototype)
-customer.lastName = "Veryeri"
-
-console.log(customer.lastName)
-console.log(customer)
-*/
-
-
-console.log("_______________________");
 customerService.load()
 employeeService.load()
 errorService.load()
 
+let customerToAdd1 = new Customer(1, "Deneme isim 1", "Deneme soyisim 1", "Ankara", 25)
+customerToAdd1.type = "customer"
+customerService.add(customerToAdd1)
 
+let customerToAdd2 = new Customer(2, "Deneme isim 2", "Deneme soyisim 2", "Ankara", "wrongType")
+customerToAdd2.type = "customer"
+customerService.add(customerToAdd2)
 
-let customerToAdd = new Customer(1, "Deneme isim", "Deneme soyisim", "Ankara", "wrongType")
-customerToAdd.type = "customer"
-customerService.add(customerToAdd)
+let customerToAdd3 = new Customer(2, "Deneme isim 3", "Deneme soyisim 3", "Ankara", 30)
+customerToAdd3.type = "custom"
+customerService.add(customerToAdd3)
 
+console.log("-----")
 console.log("Customers:");
 console.log(customerService.customers)
+console.log("Sorted Customers:");
+console.log(customerService.getCustomersSorted())
 console.log("Employees:");
 console.log(employeeService.employees)
 console.log("Errors:");
 console.log(errorService.errors)
-
-
-console.log(customerService.getCustomersSorted())
-
-

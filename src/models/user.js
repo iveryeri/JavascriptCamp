@@ -5,6 +5,6 @@ export default class User {
         this.lastName = lastName
         this.city = city
         this.age = age
-        console.log("new user has been created")
+        //console.log("new user has been created")
     }
 }

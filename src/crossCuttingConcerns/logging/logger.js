@@ -1,6 +1,6 @@
 export class BaseLogger {
     log(data) {
-        console.log("Defaul logger: " + data)
+        console.log("Default logger: " + data)
     }
 }
 
